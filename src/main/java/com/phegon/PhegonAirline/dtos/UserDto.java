@@ -40,7 +40,7 @@ public class UserDto {
 
     private boolean active;
 
-    private List<Booking> bookings;
+    private List<BookingDto> bookings;
 
     private LocalDateTime createdAt;
 
