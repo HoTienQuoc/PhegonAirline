@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.phegon.PhegonAirline.entities.Role;
 import com.phegon.PhegonAirline.enums.AuthMethod;
 
 import lombok.AllArgsConstructor;
@@ -35,7 +34,7 @@ public class UserDto {
 
     private String providerId;
 
-    private List<Role> roles;
+    private List<RoleDto> roles;
 
     private boolean active;
 

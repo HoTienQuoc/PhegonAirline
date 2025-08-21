@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.phegon.PhegonAirline.entities.Flight;
-import com.phegon.PhegonAirline.entities.User;
 import com.phegon.PhegonAirline.enums.BookingStatus;
 
 import lombok.AllArgsConstructor;
@@ -19,7 +18,7 @@ public class BookingDto {
 
     private String bookingRefrence;
     
-    private User user;
+    private UserDto user;
 
     private Flight flight;
 
