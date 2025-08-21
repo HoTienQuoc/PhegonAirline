@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.phegon.PhegonAirline.entities.Airport;
-import com.phegon.PhegonAirline.entities.User;
 import com.phegon.PhegonAirline.enums.FlightStatus;
 
 import lombok.AllArgsConstructor;
