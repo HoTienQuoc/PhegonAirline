@@ -1,6 +1,5 @@
 package com.phegon.PhegonAirline.dtos;
 
-import com.phegon.PhegonAirline.entities.Booking;
 import com.phegon.PhegonAirline.enums.PassengerType;
 
 import jakarta.validation.constraints.NotBlank;
