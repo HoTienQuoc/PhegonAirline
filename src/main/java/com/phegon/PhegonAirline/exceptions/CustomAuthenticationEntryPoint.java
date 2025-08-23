@@ -3,7 +3,6 @@ package com.phegon.PhegonAirline.exceptions;
 import java.io.IOException;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
