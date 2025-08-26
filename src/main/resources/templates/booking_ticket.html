@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            padding: 20px;
+        }
+        .email-container {
+            background-color: #ffffff;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        h2 {
+            color: #2e86de;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #2e86de;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <h2>Hi <span th:text="${userName}">User</span>,</h2>
+
+        <p>Thank you for booking your flight with <strong>Phegon Airline</strong>!</p>
+
+        <h3>Your Booking Information</h3>
+        <ul>
+            <li><strong>Booking Reference:</strong> <span th:text="${bookingReference}"></span></li>
+            <li><strong>Flight Number:</strong> <span th:text="${flightNumber}"></span></li>
+            <li>
+                <strong>Departure:</strong>
+                <span th:text="${departureAirportCity}"></span> -
+                <span th:text="${departureAirportName}"></span>
+                (<span th:text="${departureAirportIataCode}"></span>) at
+                <span th:text="${departureTime}"></span>
+            </li>
+            <li>
+                <strong>Arrival:</strong>
+                <span th:text="${arrivalAirportCity}"></span> -
+                <span th:text="${arrivalAirportName}"></span>
+                (<span th:text="${arrivalAirportIataCode}"></span>) at
+                <span th:text="${arrivalTime}"></span>
+            </li>
+            <li><strong>Base Price:</strong> $<span th:text="${basePrice}"></span></li>
+        </ul>
+
+        <h4>Passenger(s):</h4>
+        <ul>
+            <li th:each="passenger : ${passengers}">
+                <span th:text="${passenger.fullName}">Passenger Name</span>
+            </li>
+        </ul>
+
+        <a class="btn" th:href="${viewBookingUrl}">View My Booking</a>
+
+        <p class="footer">Wishing you a pleasant journey!<br/>— The Phegon Airline Team</p>
+    </div>
+</body>
+</html>

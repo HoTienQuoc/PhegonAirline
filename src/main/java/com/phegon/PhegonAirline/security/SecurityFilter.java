@@ -34,7 +34,7 @@ public class SecurityFilter {
     @Bean 
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity
-            .cors(AbstractHttpConfigurer::disable)
+            .csrf(AbstractHttpConfigurer::disable)
             .cors(Customizer.withDefaults())
             .exceptionHandling(
                 ex->ex.accessDeniedHandler(customAccessDenialHandler).authenticationEntryPoint(customAuthenticationEntryPoint)

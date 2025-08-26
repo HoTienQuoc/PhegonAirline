@@ -32,7 +32,7 @@ public class Booking {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String bookingRefrence;
+    private String bookingReference;
     
     @ManyToOne
     private User user;
@@ -45,6 +45,5 @@ public class Booking {
     @Enumerated(EnumType.STRING)
     private BookingStatus status;
 
-    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Passenger> passengers = new ArrayList<>();
 }
