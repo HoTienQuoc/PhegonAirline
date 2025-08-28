@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.phegon.PhegonAirline.dtos.BookingDto;
 import com.phegon.PhegonAirline.dtos.CreateBookingRequest;
-import com.phegon.PhegonAirline.dtos.PassengerDto;
 import com.phegon.PhegonAirline.dtos.Response;
 import com.phegon.PhegonAirline.entities.Booking;
 import com.phegon.PhegonAirline.entities.Flight;
@@ -73,8 +74,10 @@ public class BookingServiceImpl implements BookingService{
         //SEND EMAIL TICKER OUT
         emailNotificationService.sendBookingTickerEmail(savedBooking);
 
-
-        return null;
+        return Response.builder()
+            .statusCode(HttpStatus.OK.value())
+            .message("Booking created successfully")
+            .build();
     }
 
     private String generateBookingReference() {
@@ -82,23 +85,67 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
-    public Response<List<BookingDto>> getAllBookings() {
-        return null;
+    public Response<BookingDto> getBookingById(Long id) {
+        Booking booking = bookingRepo.findById(id)
+            .orElseThrow(()-> new NotFoundException("Booking not found"));
+        BookingDto bookingDTO = modelMapper. map (booking, BookingDto.class);
+        bookingDTO.getFlight().setBookings(null);
+        return Response.<BookingDto>builder()
+            .statusCode(HttpStatus.OK.value())
+            .message("Booking retreived successfully")
+            .data(bookingDTO)
+            .build();
     }
+
 
     @Override
-    public Response<BookingDto> getBookingById(Long id) {
-        return null;
+    public Response<List<BookingDto>> getAllBookings() {
+        List<Booking> allBookings = bookingRepo.findAll(Sort.by(Sort.Direction.DESC,"id"));
+        List<BookingDto> bookings = allBookings.stream() 
+            .map(booking->{
+                BookingDto bookingDTO = modelMapper.map(booking, BookingDto.class);
+                bookingDTO.getFlight().setBookings(null);
+                return bookingDTO;
+            }).toList();
+        
+        return Response.<List<BookingDto>>builder()
+            .statusCode(HttpStatus.OK.value())
+            .message(bookings.isEmpty()? "No Booking Found" : "Booking retreived successfully")            
+            .data(bookings)
+            .build();
     }
 
+    
     @Override
     public Response<List<BookingDto>> getMyBookings() {
-        return null;
+        User user = userService.currentUser();
+        List<Booking> userBookings = bookingRepo.findByUserIdOrderByIdDesc(user.getId());
+        List<BookingDto> bookings = userBookings.stream() 
+            .map(booking->{
+                BookingDto bookingDTO = modelMapper.map(booking, BookingDto.class);
+                bookingDTO.getFlight().setBookings(null);
+                return bookingDTO;
+            }).toList();
+
+        return Response.<List<BookingDto>>builder()
+            .statusCode(HttpStatus.OK.value())
+            .message(bookings.isEmpty()? "No Booking Found" : "Booking retreived successfully")            
+            .data(bookings)
+            .build();
     }
 
     @Override
+    @Transactional
     public Response<?> updateBookingStatus(Long id, BookingStatus status) {
-        return null;
+        Booking booking = bookingRepo.findById(id)
+            .orElseThrow(()-> new NotFoundException("Booking Not Found"));
+        booking.setStatus(status);
+        bookingRepo.save(booking);
+
+        return Response.builder()
+            .statusCode(HttpStatus.OK.value())
+            .message("Booking Updated Successfully")
+            .build();  
     }
 
 }
