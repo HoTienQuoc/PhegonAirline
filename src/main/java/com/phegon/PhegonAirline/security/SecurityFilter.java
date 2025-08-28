@@ -40,7 +40,10 @@ public class SecurityFilter {
                 ex->ex.accessDeniedHandler(customAccessDenialHandler).authenticationEntryPoint(customAuthenticationEntryPoint)
             )
             .authorizeHttpRequests(
-                req->req.requestMatchers("/api/auth/**","/api/airports/**","/api/flights/**").permitAll().anyRequest().authenticated()
+                req->req.requestMatchers(
+                    "/api/auth/**","/api/airports/**","/api/flights/**"
+                )
+                .permitAll().anyRequest().authenticated()
             )
             .sessionManagement(
                 mag->mag.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

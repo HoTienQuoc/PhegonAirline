@@ -29,6 +29,10 @@ public class Passenger {
     @JoinColumn(name="booking_id")
     private Booking booking;
 
+    @ManyToOne
+    @JoinColumn(name = "flight_id")
+    private Flight flight;
+
     private String firstName;
 
     private String lastName;
@@ -41,5 +45,4 @@ public class Passenger {
     private String seatNumber;
 
     private String specialRequests;
-
 }

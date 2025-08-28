@@ -1,5 +1,8 @@
 package com.phegon.PhegonAirline.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum City {
     //NIGERIA
     LAGOS(Country.NIGERIA),

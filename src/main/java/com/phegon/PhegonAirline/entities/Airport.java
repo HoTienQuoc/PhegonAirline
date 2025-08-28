@@ -37,6 +37,6 @@ public class Airport {
     private Country country;
 
     @Column(unique = true, nullable = false, length = 3)
-    private String iaataCode;
+    private String iataCode;
     
 }

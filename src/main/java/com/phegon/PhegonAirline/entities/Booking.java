@@ -45,5 +45,6 @@ public class Booking {
     @Enumerated(EnumType.STRING)
     private BookingStatus status;
 
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL) // <-- CORRECT
     private List<Passenger> passengers = new ArrayList<>();
 }
