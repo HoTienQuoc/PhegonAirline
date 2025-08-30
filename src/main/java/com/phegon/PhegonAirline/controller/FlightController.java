@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,7 +49,7 @@ public class FlightController {
         return ResponseEntity.ok(flightService.getAllFlights());
     }
 
-    @PostMapping()
+    @PutMapping()
     @PreAuthorize("hasAuthority('ADMIN','PILOT')")
     public ResponseEntity<Response<?>> updateAirport(@RequestBody CreateFlightRequest flightRequest){
         return ResponseEntity.ok(flightService.updateFlight(flightRequest));

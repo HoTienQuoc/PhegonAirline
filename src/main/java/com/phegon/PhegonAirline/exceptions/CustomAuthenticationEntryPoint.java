@@ -31,6 +31,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint{
             .message(authException.getMessage())
             .build();
         response.setContentType("application/json");
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
         response.setStatus(HttpStatus.FORBIDDEN.value());
         response.getWriter().write(objectMapper.writeValueAsString(errorResponse));
     }

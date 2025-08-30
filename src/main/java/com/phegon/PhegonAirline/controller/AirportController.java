@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/airports")
 @RequiredArgsConstructor
-public class AirController {
+public class AirportController {
     private final AirportService airportService;
 
     @PostMapping()

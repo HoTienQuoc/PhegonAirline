@@ -37,16 +37,16 @@ public class SecurityFilter {
             .csrf(AbstractHttpConfigurer::disable)
             .cors(Customizer.withDefaults())
             .exceptionHandling(
-                ex->ex.accessDeniedHandler(customAccessDenialHandler).authenticationEntryPoint(customAuthenticationEntryPoint)
+                ex -> ex.accessDeniedHandler(customAccessDenialHandler).authenticationEntryPoint(customAuthenticationEntryPoint)
             )
             .authorizeHttpRequests(
-                req->req.requestMatchers(
-                    "/api/auth/**","/api/airports/**","/api/flights/**"
-                )
-                .permitAll().anyRequest().authenticated()
+                req -> req.requestMatchers(
+                    "/api/auth/**", "/api/airports/**", "/api/flights/**"
+                ).permitAll()
+                .anyRequest().authenticated()
             )
             .sessionManagement(
-                mag->mag.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                mag -> mag.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
