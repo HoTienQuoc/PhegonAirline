@@ -1,13 +1,13 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useMessage } from "../common/MessageDisplay"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ApiService from "../../services/ApiService";
 
 const HomePage = () => {
     const { ErrorDisplay, SuccessDisplay, showError, showSuccess } = useMessage();
     const navigate = useNavigate();
     const [airports, setAirports] = useState([]);
-    const [loadingAirports, setLoadingAirports] = useState(true);
+    // const [loadingAirports, setLoadingAirports] = useState(true);
 
     const [searchData, setSearchData] = useState({
         departureIataCode: "",
@@ -17,9 +17,9 @@ const HomePage = () => {
 
     const popularDestinations = [
         { id: 1, city: "New York", country: "USA", price: "$450", image: "usa.jpg" },
-        { id: 2, city: "London", country: "UK", price: "$380", image: "uk-jpg" },
-        { id: 3, city: "Dubai", country: "UAE", price: "$520", image: "uae-webp" },
-        { id: 4, city: "Tokyo", country: "Japan", price: "$1200", image: "japan-webp" },
+        { id: 2, city: "London", country: "UK", price: "$380", image: "uk.jpg" },
+        { id: 3, city: "Dubai", country: "UAE", price: "$520", image: "uae.webp" },
+        { id: 4, city: "Tokyo", country: "Japan", price: "$1200", image: "japan.webp" },
     ];
 
     // Fetch all airports on component mount
@@ -30,8 +30,6 @@ const HomePage = () => {
                 setAirports(response.data || []);
             } catch (error) {
                 showError("Failed to load airports");
-            } finally {
-                setLoadingAirports(false)
             }
         }
         fetchAirports();
@@ -40,7 +38,7 @@ const HomePage = () => {
     const handleSearch = async (e) => {
         e.preventDefault();
         if (!searchData.departureIataCode || !searchData.arrivalIataCode || !searchData.departureDate) {
-            showError("Please select departure and arival airports and dates");
+            showError("Please select departure and arrival airports and dates");
             return;
         }
         navigate(`/flights?departureIataCode=${searchData.departureIataCode}&arrivalIataCode=${searchData.arrivalIataCode}&departureDate=${searchData.departureDate}`);
@@ -94,7 +92,7 @@ const HomePage = () => {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="">From</label>
+                                <label htmlFor="">To</label>
                                 <select
                                     value={searchData.arrivalIataCode}
                                     onChange={(e)=> setSearchData({... searchData, arrivalIataCode: e.target.value})}
@@ -135,7 +133,7 @@ const HomePage = () => {
                 <p>Explore our most booked flight routes</p>
                 <div className="destinations-grid">
                     {popularDestinations.map(destination => (
-                        <div key={destination. id} className="destination-card">
+                        <div key={destination.id} className="destination-card">
                             <div className="destination-image" style={{ 
                                 backgroundImage:`url(/images/${destination.image})`}}>
                                 <div className="destination-overlay">
@@ -214,6 +212,34 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
+
+
+            {/* Testimonials */}
+            <section className="testimonials-section">
+                <h2>What Our Passengers Say</h2>
+                <div className="testimonials-grid">
+                    <div className="testimonial-card">
+                        <div className="testimonial-text">
+                            "The service was exceptional from booking to landing. Will definitely fly with Phegon again!"
+                        </div>
+                        <div className="testimonial-author">
+                            <div className="author-name">Sarah Johnson</div>
+                            <div className="author-detail">Frequent Flyer</div>
+                        </div>
+                    </div>
+                    <div className="testimonial-card">
+                        <div className="testimonial-text">
+                            "Most comfortable economy seats I've experienced. The crew made the long flight enjoyable."
+                        </div>
+                        <div className="testimonial-author">
+                            <div className="author-name">Michael Chen</div>
+                            <div className="author-detail">Business Traveler</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     )
 }
+
+export default HomePage;
