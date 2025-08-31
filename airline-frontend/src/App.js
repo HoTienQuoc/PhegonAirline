@@ -4,6 +4,9 @@ import Footer from "./components/common/Footer";
 import RegisterPage from "./components/auth/RegisterPage";
 import LoginPage from "./components/auth/LoginPage";
 import HomePage from "./components/pages/HomePage";
+import FindFlightsPage from "./components/pages/FindFlightsPage";
+import ProfilePage from "./components/profiles/ProfilePage";
+
 
 
 
@@ -19,6 +22,9 @@ function App() {
           <Route path="/register" element={<RegisterPage/>}/>
           <Route path="/login" element={<LoginPage/>}/>
           <Route path="/home" element={<HomePage/>}/>
+          <Route path="/flights" element={<FindFlightsPage/>}/>
+          <Route path="/profilePage" element={<ProfilePage/>}/>
+
         </Routes>
       </div>
       <Footer/>

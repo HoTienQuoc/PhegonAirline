@@ -20,7 +20,7 @@ const Navbar = () => {
         <nav className="nb">
             <div className="nb-container">
                 <div className="nb-brand">
-                    <Link to="/" className="ng-logo">
+                    <Link to="/home" className="ng-logo">
                         <span className="logo-airline">Phegon</span>
                         <span className="logo-text">Airlines</span>
                     </Link>

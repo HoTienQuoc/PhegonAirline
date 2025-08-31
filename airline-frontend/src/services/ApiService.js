@@ -178,7 +178,7 @@ export default class ApiService{
         return resp.data;
     }
 
-    static async searchlights(departureIataCode, arrivalIataCode, departureDate) {
+    static async searchFlights(departureIataCode, arrivalIataCode, departureDate) {
         const params = {
             departureIataCode: departureIataCode,
             arrivalIataCode: arrivalIataCode,
