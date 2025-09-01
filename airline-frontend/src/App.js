@@ -6,7 +6,7 @@ import LoginPage from "./components/auth/LoginPage";
 import HomePage from "./components/pages/HomePage";
 import FindFlightsPage from "./components/pages/FindFlightsPage";
 import ProfilePage from "./components/profiles/ProfilePage";
-
+import UpdateProfilePage from "./components/profiles/UpdateProfilePage";
 
 
 
@@ -24,7 +24,7 @@ function App() {
           <Route path="/home" element={<HomePage/>}/>
           <Route path="/flights" element={<FindFlightsPage/>}/>
           <Route path="/profile" element={<ProfilePage/>}/>
-
+          <Route path="/update-profile" element={<UpdateProfilePage />} />
         </Routes>
       </div>
       <Footer/>
