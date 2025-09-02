@@ -11,6 +11,7 @@ const AdminDashboardPage = () => {
     const [flights, setFlights] = useState([]);
     const [airports, setAirports] = useState([]);
     const [loading, setLoading] = useState(true);
+    
 
     useEffect(() => {
         fetchAllData();

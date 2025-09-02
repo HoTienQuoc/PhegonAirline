@@ -9,6 +9,7 @@ const BookingDetailsPage = () => {
 
     const [booking, setBooking] = useState(null);
     const [loading, setLoading] = useState(true);
+    // const [selectedStatus, setSelectedStatus] = useState("");
 
     useEffect(() => {
         fetchBookingDetails();
