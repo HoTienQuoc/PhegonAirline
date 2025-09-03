@@ -47,7 +47,7 @@ const Navbar = () => {
                                 ({  
                                     isPilot && (
                                         <>
-                                            <Link to="/pilot" className="nav-link">
+                                            <Link to="/admin" className="nav-link">
                                                 Pilot
                                             </Link>
                                         </>
